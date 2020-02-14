@@ -9,16 +9,21 @@ class ListContextProvider extends Component {
     }
 
     addToDo = (todo) => {
-        console.log(todo);
         let newToDos = [...this.state.toDos];
         newToDos.push(todo);
         this.setState({ toDos: newToDos });
     }
 
+    deleteToDo = (todo) => {
+        let newToDos = [...this.state.toDos];
+        newToDos = newToDos.filter(item => item !== todo["item"]);
+        this.setState({ toDos: newToDos });
+    }
+
     render() {
         return(
-            <ListContext.Provider value={{...this.state, addToDo: this.addToDo}}> 
-            {this.props.children}
+            <ListContext.Provider value={{...this.state, addToDo: this.addToDo, deleteToDo: this.deleteToDo}}> 
+                {this.props.children}
             </ListContext.Provider>
         );
     }

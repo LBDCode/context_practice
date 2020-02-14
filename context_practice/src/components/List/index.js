@@ -10,11 +10,12 @@ class TodoList extends Component {
         return(
         <ListContext.Consumer>{(context)=>{
             const toDos = context.toDos;
+            const deleteToDo = context.deleteToDo;
             return(
                 <Container className="todoList">
                     <ListGroup>
                             {toDos.map(item => {
-                            return <ListGroup.Item><span className="todoItem">{item}</span> <Button className="deleteButton" variant="outline-danger" size="sm">delete</Button></ListGroup.Item>
+                            return <ListGroup.Item><span className="todoItem">{item}</span> <Button key={item} onClick={() => deleteToDo({item})} className="deleteButton" variant="outline-danger" size="sm">delete</Button></ListGroup.Item>
                         })}
                     </ListGroup>
     
